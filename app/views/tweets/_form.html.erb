@@ -1,0 +1,30 @@
+<%= form_with(model: tweet,
+              local: false,
+              format: :json,
+              data: {
+                  controller: 'tweet',
+                  'tweet-enable-value': tweet.content.length > 0,
+                  'tweet-count-value': tweet.content.length,
+              }) do |form| %>
+  <% if tweet.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(tweet.errors.count, "error") %> prohibited this tweet from being saved:</h2>
+
+      <ul>
+        <% tweet.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :content %>
+    <%= form.text_area :content, data: { 'tweet-target': 'content' }, rows: 5, cols: 30 %>
+    <p>あと<span data-tweet-target="words"></span>文字入力できます</p>
+  </div>
+
+  <div class="actions">
+    <%= form.submit data: { 'tweet-target': 'button' } %>
+  </div>
+<% end %>

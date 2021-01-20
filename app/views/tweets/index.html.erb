@@ -1,0 +1,13 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Tweets</h1>
+
+<%= render 'tweets/form', tweet: @tweet %>
+
+<div id="tweets">
+  <%= render 'tweets/list', tweets: @tweets %>
+</div>
+
+<br>
+
+<%= link_to 'New Tweet', new_tweet_path %>
